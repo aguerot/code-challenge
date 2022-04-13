@@ -1,0 +1,28 @@
+{
+  "root": "apps/consent-e2e",
+  "sourceRoot": "apps/consent-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/consent-e2e/cypress.json",
+        "devServerTarget": "consent:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "consent:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/consent-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["consent"]
+}

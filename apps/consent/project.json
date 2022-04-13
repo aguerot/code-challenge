@@ -1,0 +1,94 @@
+{
+  "projectType": "application",
+  "root": "apps/consent",
+  "sourceRoot": "apps/consent/src",
+  "prefix": "aguerot",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/consent",
+        "index": "apps/consent/src/index.html",
+        "main": "apps/consent/src/main.ts",
+        "polyfills": "apps/consent/src/polyfills.ts",
+        "tsConfig": "apps/consent/tsconfig.app.json",
+        "inlineStyleLanguage": "less",
+        "assets": ["apps/consent/src/favicon.ico", "apps/consent/src/assets"],
+        "styles": ["apps/consent/src/styles.less"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/consent/src/environments/environment.ts",
+              "with": "apps/consent/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "consent:build:production"
+        },
+        "development": {
+          "browserTarget": "consent:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "proxyConfig": "apps/consent/proxy.conf.json"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "consent:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/consent/src/**/*.ts",
+          "apps/consent/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/consent"],
+      "options": {
+        "jestConfig": "apps/consent/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
