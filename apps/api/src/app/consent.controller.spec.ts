@@ -18,7 +18,7 @@ describe('consent controller', () => {
 
     // Act
     const result = controller.appendConsents({
-      id: 'user1',
+      user: { id: 'user1' },
       consents: [
       ]
     });
