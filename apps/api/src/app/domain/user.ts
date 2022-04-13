@@ -6,13 +6,17 @@ export class User {
 
   constructor(
     readonly id: string,
-    readonly email: Email,
+    private readonly _email: Email,
     consentHistory: Consent[] = []) {
       this.consents = consentHistory.splice(2);
   }
 
-  appendConsents(newConsents: Consent[]) {
-    return new User(this.id, this.email, [
+  get email() {
+    return this._email.value;
+  }
+
+  appendConsents(newConsents: Consent[]): User {
+    return new User(this.id, this._email, [
       ...this.consents,
       ...newConsents,
     ]);
