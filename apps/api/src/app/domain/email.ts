@@ -6,7 +6,7 @@ export class Email {
     return this._email;
   }
 
-  static create(email: string): Email {
+  public static create(email: string): Email {
     return new Email(email);
   }
 }
