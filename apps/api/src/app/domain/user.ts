@@ -1,4 +1,5 @@
-import { Consent } from './consent';
+import { Cipher } from 'crypto';
+import { Consent, ConsentIDs } from './consent';
 import { Email } from './email';
 
 export class User {
@@ -8,7 +9,17 @@ export class User {
     readonly id: string,
     private readonly _email: Email,
     consentHistory: Consent[] = []) {
-      this.consents = consentHistory.splice(0, 2);
+      this.consents = this.computelatestConsents(consentHistory);
+  }
+
+  private computelatestConsents(consentHistory: Consent[]): Consent[] {
+    const [ latestSmsConsent ] = consentHistory.filter(c => c.id === 'sms_notifications').splice(-1);
+    const [ latestEmailConsent ] = consentHistory.filter(c => c.id === 'email_notifications').splice(-1);
+
+    return [
+      latestSmsConsent,
+      latestEmailConsent,
+    ].filter(c => !!c);
   }
 
   get email() {
