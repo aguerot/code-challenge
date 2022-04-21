@@ -8,7 +8,7 @@ export class User {
     readonly id: string,
     private readonly _email: Email,
     consentHistory: Consent[] = []) {
-      this.consents = consentHistory.splice(2);
+      this.consents = consentHistory.splice(0, 2);
   }
 
   get email() {
