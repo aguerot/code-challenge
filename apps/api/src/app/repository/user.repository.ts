@@ -6,5 +6,7 @@ export interface IUserRepository {
   findById(id: string): Promise<User | undefined>;
   findByEmail(email: string):Promise< User | undefined>;
   create(user: User): Promise<User>;
-  appendConsents(id: string, consents: Consent[]): Promise<boolean>
+  appendConsents(id: string, consents: Consent[]): Promise<boolean>;
+
+  delete(id: string): Promise<boolean>;
 }

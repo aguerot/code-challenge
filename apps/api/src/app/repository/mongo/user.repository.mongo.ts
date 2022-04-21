@@ -11,6 +11,10 @@ import { Email } from '../../domain/email';
 export class UserRepositoryMongo implements IUserRepository {
   constructor(@InjectModel(UserModel.name) private readonly _userRepo: Model<UserModel>) {
   }
+  async delete(id: string): Promise<boolean> {
+    const result = await this._userRepo.deleteOne({ id })
+    return	result.deletedCount === 1;
+  }
 
   async findAll(): Promise<User[]> {
     const items = await this._userRepo.find()

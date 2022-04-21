@@ -88,6 +88,26 @@ describe('user mongo repository', () => {
     expect(result[1].id).toBe('id2');
   });
 
+  it('should delete existing user', async () => {
+    // Arrange
+    await userRepository.create(UserBuilder.create('id1'));
+
+    // Act
+    const result = await userRepository.delete('id1');
+
+    // Assert
+    expect(result).toBe(true);
+  });
+
+  it('should not delete unknown user', async () => {
+
+    // Act
+    const result = await userRepository.delete('unknownId');
+
+    // Assert
+    expect(result).toBe(false);
+  });
+
   it('should append consent', async () => {
     // Arrange
     await userRepository.create(UserBuilder.create('id1'));
