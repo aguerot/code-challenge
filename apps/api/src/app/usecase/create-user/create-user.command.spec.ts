@@ -1,4 +1,5 @@
 import Substitute, { Arg, SubstituteOf } from '@fluffy-spoon/substitute';
+import { User } from '../../domain/user';
 import { IUserRepository } from '../../repository/user.repository';
 import { CreateUser, CreateUserHandler } from './create-user.command';
 
@@ -24,5 +25,19 @@ describe('create-user', () => {
       email: command.email,
       consents: []
     });
+    expect(result.id).toBeDefined();
+  });
+
+  it('should not create new user if email duplicated', async () => {
+    // Arrange
+    const command = new CreateUser('user1@inter.net');
+    userRepository.findByEmail(Arg.any()).resolves({ } as User);
+
+    // Act
+    const createUserAction = () => handler.execute(command);
+
+    // Assert
+    expect(createUserAction).rejects.toThrow('duplicate email');
+
   });
 });
