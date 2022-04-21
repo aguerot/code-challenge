@@ -22,7 +22,7 @@ export class CreateUserHandler implements ICommandHandler<CreateUser, CreateUser
     const existingUser = await this._userRepository.findByEmail(email);
 
     if (existingUser) {
-      throw new Error('duplicate id');
+      throw new Error('duplicate email');
     }
 
     const user = new User(randomUUID(), Email.create(email));
