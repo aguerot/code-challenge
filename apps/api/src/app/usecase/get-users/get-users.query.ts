@@ -13,8 +13,7 @@ export class GetUsersHandler implements IQueryHandler<GetUsers, GetUsersResponse
   }
 
   execute(query: GetUsers): Promise<GetUsersResponse> {
-    const users = this._userRepository.findAll();
-    return users;
+    return this._userRepository.findAll();
   }
 
 }
