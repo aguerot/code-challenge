@@ -1,5 +1,4 @@
-import { Cipher } from 'crypto';
-import { Consent, ConsentIDs } from './consent';
+import { Consent } from './consent';
 import { Email } from './email';
 
 export class User {

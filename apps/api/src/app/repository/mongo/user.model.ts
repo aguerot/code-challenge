@@ -12,7 +12,7 @@ export class UserModel extends Document {
 
   @Prop({
     type: [
-      { id: { type: String, required: true }, enabled: { type: Boolean, required: true }, }
+      { id: { type: String, required: true }, enabled: { type: Boolean, required: true }, _id: false }
     ]
   })
   consentHistory: Consent[];

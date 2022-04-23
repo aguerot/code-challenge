@@ -6,12 +6,27 @@ import { DeleteUser } from './usecase/delete-user/delete-user.command';
 import { GetUserById } from './usecase/get-user-by-id/get-user-by-id.query';
 import { GetUsers } from './usecase/get-users/get-users.query';
 import { ApiTags, ApiOperation, ApiResponse, ApiBody, ApiProperty } from '@nestjs/swagger';
+import { Consent } from './domain/consent';
 
 class CreateUserDto {
   @ApiProperty({ type: String, required: true })
   email: string;
 }
 
+class UserDto {
+  constructor(user: User) {
+    this.id = user.id;
+    this.email = user.email;
+    this.consents = [...user.consents];
+  }
+
+  @ApiProperty({ type: String, readOnly: true, required: true })
+  readonly id: string;
+  @ApiProperty({ type: String, readOnly: true, required: true })
+  readonly email: string;
+  @ApiProperty({ type: Consent, readOnly: true, required: true, isArray: true, minItems: 0 })
+  readonly consents: Consent[]
+}
 
 @Controller('users')
 @ApiTags('Users')
@@ -24,32 +39,34 @@ export class UserController {
 
   @Get()
   @ApiOperation({ summary: 'Get all users' })
-  @ApiResponse({ status: 200, description: 'list of users', type: User, isArray: true })
+  @ApiResponse({ status: 200, description: 'list of users', type: UserDto, isArray: true })
   @ApiResponse({ status: 422, description: 'unprocessable entity' })
-  getAll(): Promise<User[]> {
-    return this._queryBus.execute<GetUsers, User[]>(new GetUsers());
+  async getAll(): Promise<UserDto[]> {
+    const users = await this._queryBus.execute<GetUsers, User[]>(new GetUsers());
+
+    return users.map(u => new UserDto(u));
   }
 
   @Get(':id')
   @ApiOperation({ summary: 'Get user by id' })
-  @ApiResponse({ status: 200, description: 'Requested user', type: User })
+  @ApiResponse({ status: 200, description: 'Requested user', type: UserDto })
   @ApiResponse({ status: 422, description: 'User does not exsit' })
-  async getById(@Param('id') id: string): Promise<User> {
+  async getById(@Param('id') id: string): Promise<UserDto> {
     const user = await this._queryBus.execute<GetUserById, User>(new GetUserById(id));
 
     if (!user) {
       throw new UnprocessableEntityException();
     }
 
-    return user;
+    return new UserDto(user);
   }
 
   @Post()
   @ApiOperation({ summary: 'Create a new user with an email' })
   @ApiBody({ type: CreateUserDto, required: true })
-  @ApiResponse({ status: 201, description: 'New user details', type: User })
+  @ApiResponse({ status: 201, description: 'New user details', type: UserDto })
   @ApiResponse({ status: 422, description: 'Duplicate email' })
-  async create(@Body() { email }: { email: string }) {
+  async create(@Body() { email }: { email: string }): Promise<UserDto> {
     try {
 
       const user = await this._commandBus.execute<CreateUser, User>(new CreateUser(email));
@@ -58,9 +75,8 @@ export class UserController {
         throw new UnprocessableEntityException();
       }
 
-      return user;
+      return new UserDto(user);
     } catch (err) {
-      console.log(err);
       throw new UnprocessableEntityException(err);
     }
   }
