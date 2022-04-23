@@ -1,3 +1,4 @@
+import { Inject } from '@nestjs/common';
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { IUserRepository } from '../../repository/user.repository';
 
@@ -8,7 +9,7 @@ export class DeleteUser {
 
 @CommandHandler(DeleteUser)
 export class DeleteUserHandler implements ICommandHandler<DeleteUser, boolean> {
-  constructor(private readonly _repo: IUserRepository) {
+  constructor(@Inject('IUserRepository') private readonly _repo: IUserRepository) {
   }
 
   execute({ id }: DeleteUser): Promise<boolean> {

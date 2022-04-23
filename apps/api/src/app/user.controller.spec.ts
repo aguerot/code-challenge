@@ -4,7 +4,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UserBuilder } from './test/user.builder';
 import { CreateUser } from './usecase/create-user/create-user.command';
 import { DeleteUser } from './usecase/delete-user/delete-user.command';
-import { GetUserById } from './usecase/get-user-by-id/get-user-by-id.command';
+import { GetUserById } from './usecase/get-user-by-id/get-user-by-id.query';
 import { GetUsers } from './usecase/get-users/get-users.query';
 import { UserController } from './user.controller';
 

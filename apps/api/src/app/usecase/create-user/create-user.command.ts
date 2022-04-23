@@ -1,3 +1,4 @@
+import { Inject } from '@nestjs/common';
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { randomUUID } from 'crypto';
 import { Email } from '../../domain/email';
@@ -15,7 +16,7 @@ export type CreateUserResponse = User;
 @CommandHandler(CreateUser)
 export class CreateUserHandler implements ICommandHandler<CreateUser, CreateUserResponse> {
 
-  constructor(private readonly _userRepository: IUserRepository) {
+  constructor(@Inject('IUserRepository') private readonly _userRepository: IUserRepository) {
   }
 
   async execute({ email }: CreateUser): Promise<User> {
@@ -26,9 +27,7 @@ export class CreateUserHandler implements ICommandHandler<CreateUser, CreateUser
     }
 
     const user = new User(randomUUID(), Email.create(email));
-
     await this._userRepository.create(user);
-
     return user;
   }
 

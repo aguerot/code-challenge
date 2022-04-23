@@ -1,3 +1,4 @@
+import { Inject } from '@nestjs/common';
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { Consent } from '../../domain/consent';
 import { IUserRepository } from '../../repository/user.repository';
@@ -9,7 +10,7 @@ export class AppendConsents {
 
 @CommandHandler(AppendConsents)
 export class AppendConsentsHandler implements ICommandHandler<AppendConsents, boolean> {
-  constructor(private readonly _repo: IUserRepository) {
+  constructor(@Inject('IUserRepository') private readonly _repo: IUserRepository) {
   }
 
   execute( { id, consents }: AppendConsents): Promise<boolean> {

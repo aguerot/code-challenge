@@ -1,7 +1,7 @@
 import Substitute, { Arg, SubstituteOf } from '@fluffy-spoon/substitute';
 import { IUserRepository } from '../../repository/user.repository';
 import { UserBuilder } from '../../test/user.builder';
-import { GetUserById, GetUserByIdHandler } from './get-user-by-id.command';
+import { GetUserById, GetUserByIdHandler } from './get-user-by-id.query';
 
 describe('get-user-by-id', () => {
   let handler: GetUserByIdHandler;

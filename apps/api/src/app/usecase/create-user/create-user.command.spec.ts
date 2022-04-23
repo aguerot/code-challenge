@@ -40,4 +40,29 @@ describe('create-user', () => {
     expect(createUserAction).rejects.toThrow('duplicate email');
 
   });
+
+  it('should not create new user with empty email', async () => {
+    // Arrange
+    const command = new CreateUser(undefined);
+    userRepository.findByEmail(Arg.any()).resolves(undefined);
+
+    // Act
+    const createUserAction = () => handler.execute(command);
+
+    // Assert
+    expect(createUserAction).rejects.toThrow('email-required');
+  });
+
+  it('should not create new user with invalid email', async () => {
+    // Arrange
+    const command = new CreateUser('not-an-email');
+    userRepository.findByEmail(Arg.any()).resolves(undefined);
+
+    // Act
+    const createUserAction = () => handler.execute(command);
+
+    // Assert
+    expect(createUserAction).rejects.toThrow('invalid-email');
+  });
+
 });
