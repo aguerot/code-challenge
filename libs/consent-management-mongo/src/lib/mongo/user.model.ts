@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { Consent } from '../../domain/consent';
+import { Consent } from '@aguerot/consent-management';
 
 @Schema()
 export class UserModel extends Document {

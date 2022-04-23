@@ -1,10 +1,9 @@
 import { Test } from '@nestjs/testing';
 import { UserModel, UserSchema } from './user.model';
 import { MongooseModule } from '@nestjs/mongoose';
-import { rootMongooseTestModule, closeInMongodConnection } from '../../test/mongoose.utils';
-import { IUserRepository } from '../user.repository';
+import { rootMongooseTestModule, closeInMongodConnection } from '../test/mongoose.utils';
 import { UserRepositoryMongo } from './user.repository.mongo';
-import { UserBuilder } from '../../test/user.builder';
+import { IUserRepository, UserBuilder } from '@aguerot/consent-management';
 
 describe('user mongo repository', () => {
   let userRepository: IUserRepository;

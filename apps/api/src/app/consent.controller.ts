@@ -1,8 +1,7 @@
+import { AppendConsents, Consent } from '@aguerot/consent-management';
 import { Body, Controller, Post, UnprocessableEntityException } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
 import { ApiProperty, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { Consent } from './domain/consent';
-import { AppendConsents } from './usecase/append-consent/append-consent.command';
 
 class UserDto {
   @ApiProperty({ type: String, required: true })

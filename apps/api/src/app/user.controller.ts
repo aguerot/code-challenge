@@ -1,12 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, UnprocessableEntityException } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { User } from './domain/user';
-import { CreateUser } from './usecase/create-user/create-user.command';
-import { DeleteUser } from './usecase/delete-user/delete-user.command';
-import { GetUserById } from './usecase/get-user-by-id/get-user-by-id.query';
-import { GetUsers } from './usecase/get-users/get-users.query';
 import { ApiTags, ApiOperation, ApiResponse, ApiBody, ApiProperty } from '@nestjs/swagger';
-import { Consent } from './domain/consent';
+import { User, Consent, GetUsers, GetUserById, CreateUser, DeleteUser } from '@aguerot/consent-management';
 
 class CreateUserDto {
   @ApiProperty({ type: String, required: true })

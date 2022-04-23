@@ -15,7 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@aguerot/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@aguerot/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@aguerot/consent-management": ["libs/consent-management/src/index.ts"],
+      "@aguerot/consent-management-mongo": [
+        "libs/consent-management-mongo/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

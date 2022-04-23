@@ -1,9 +1,8 @@
+import { AppendConsents, Consent } from '@aguerot/consent-management';
 import Substitute, { Arg, SubstituteOf } from '@fluffy-spoon/substitute';
 import { CommandBus } from '@nestjs/cqrs';
 import { Test, TestingModule } from '@nestjs/testing';
 import { ConsentController } from './consent.controller';
-import { Consent } from './domain/consent';
-import { AppendConsents } from './usecase/append-consent/append-consent.command';
 
 describe('consent controller', () => {
   let app: TestingModule;

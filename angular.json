@@ -4,6 +4,8 @@
     "api": "apps/api",
     "api-interfaces": "libs/api-interfaces",
     "consent": "apps/consent",
-    "consent-e2e": "apps/consent-e2e"
+    "consent-e2e": "apps/consent-e2e",
+    "consent-management": "libs/consent-management",
+    "consent-management-mongo": "libs/consent-management-mongo"
   }
 }

@@ -1,9 +1,9 @@
 import { Test } from '@nestjs/testing';
-import { UserModel, UserSchema } from './user.model';
-import { Model } from 'mongoose';
 import { MongooseModule, getModelToken } from '@nestjs/mongoose';
-import { rootMongooseTestModule, closeInMongodConnection } from '../../test/mongoose.utils';
-import { Consent } from '../../domain/consent';
+import { Model } from 'mongoose';
+import { UserModel, UserSchema } from './user.model';
+import { rootMongooseTestModule, closeInMongodConnection } from '../test/mongoose.utils';
+import { Consent } from '@aguerot/consent-management';
 
 describe('user mongoose model', () => {
   let userModel: Model<UserModel>;

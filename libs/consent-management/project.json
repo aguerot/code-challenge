@@ -1,0 +1,22 @@
+{
+  "root": "libs/consent-management",
+  "sourceRoot": "libs/consent-management/src",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/consent-management/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/consent-management"],
+      "options": {
+        "jestConfig": "libs/consent-management/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["domain"]
+}

@@ -1,14 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Consent } from '../../domain/consent';
-import { IUserRepository } from '../user.repository';
+import { Consent, Email, IUserRepository, User } from '@aguerot/consent-management';
 import { Model } from 'mongoose';
 import { UserModel } from './user.model';
-import { User } from '../../domain/user';
-import { Email } from '../../domain/email';
 
 @Injectable()
 export class UserRepositoryMongo implements IUserRepository {
+
   constructor(@InjectModel(UserModel.name) private readonly _userRepo: Model<UserModel>) {
   }
   async delete(id: string): Promise<boolean> {
