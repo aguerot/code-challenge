@@ -2,7 +2,7 @@ import { Test } from '@nestjs/testing';
 import { MongooseModule, getModelToken } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { UserModel, UserSchema } from './user.model';
-import { rootMongooseTestModule, closeInMongodConnection } from '../test/mongoose.utils';
+import { rootMongooseTestModule, closeInMongodConnection } from '../../test/mongoose.utils';
 import { Consent } from '@aguerot/consent-management';
 
 describe('user mongoose model', () => {

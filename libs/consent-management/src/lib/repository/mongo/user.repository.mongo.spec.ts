@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 import { UserModel, UserSchema } from './user.model';
 import { MongooseModule } from '@nestjs/mongoose';
-import { rootMongooseTestModule, closeInMongodConnection } from '../test/mongoose.utils';
+import { rootMongooseTestModule, closeInMongodConnection } from '../../test/mongoose.utils';
 import { UserRepositoryMongo } from './user.repository.mongo';
 import { IUserRepository, UserBuilder } from '@aguerot/consent-management';
 

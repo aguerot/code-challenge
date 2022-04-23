@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Message } from '@aguerot/api-interfaces';
 
 @Component({
   selector: 'aguerot-root',
@@ -8,6 +7,6 @@ import { Message } from '@aguerot/api-interfaces';
   styleUrls: ['./app.component.less'],
 })
 export class AppComponent {
-  hello$ = this.http.get<Message>('/api/hello');
+  hello$ = this.http.get<string>('/api/hello');
   constructor(private http: HttpClient) {}
 }
