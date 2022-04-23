@@ -14,7 +14,7 @@ class CreateUserDto {
 
 
 @Controller('users')
-@ApiTags('users')
+@ApiTags('Users')
 export class UserController {
 
   constructor(
