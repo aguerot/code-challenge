@@ -14,7 +14,7 @@ describe('user controller', () => {
   let queryBus: SubstituteOf<QueryBus>;
   let commandBus: SubstituteOf<CommandBus>;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     queryBus = Substitute.for<QueryBus>();
     commandBus = Substitute.for<CommandBus>();
 
@@ -29,25 +29,28 @@ describe('user controller', () => {
     controller = app.get<UserController>(UserController);
   });
 
+  describe('get all', () => {
+    it('should get all users', async () => {
+      // Arrange
+      queryBus.execute(new GetUsers()).resolves([
+        UserBuilder.create('id1'),
+        UserBuilder.create('id2')
+      ]);
 
-  it('should get all users', () => {
-    // Arrange
-    queryBus.execute(new GetUsers()).resolves([
-      UserBuilder.create('id1'),
-      UserBuilder.create('id2')
-    ]);
+      // Act
+      const result = await controller.getAll();
 
-    // Act
-    const result = controller.getAll();
+      // Assert
+      expect(result).toHaveLength(2);
+    });
 
-    // Assert
-    expect(result).toHaveLength(2);
   });
 
   describe('get by id', () => {
     it('should get user by id', async () => {
       // Arrange
-      queryBus.execute(new GetUserById('user1')).resolves(UserBuilder.create('user1'));
+      queryBus.execute(new GetUserById('user1'))
+        .resolves(UserBuilder.create('user1'));
 
       // Act
       const result = await controller.getById('user1');
@@ -62,7 +65,8 @@ describe('user controller', () => {
 
     it('should throw 422 on unknown user', async () => {
       // Arrange
-      queryBus.execute(new GetUserById('user1')).resolves(undefined);
+      queryBus.execute(new GetUserById('user1'))
+        .resolves(undefined);
 
       // Act
       const getById = () => controller.getById('user1');
@@ -84,8 +88,6 @@ describe('user controller', () => {
       // Act
       const result = await controller.create({ email: 'user1@inter.net' });
 
-      console.log(JSON.stringify(result));
-
       // Assert
       expect(result).toMatchObject({
         id: 'user1',
@@ -104,8 +106,8 @@ describe('user controller', () => {
 
       // Assert
       expect(result())
-      .rejects
-      .toThrow('Unprocessable Entity');
+        .rejects
+        .toThrow('Unprocessable Entity');
     });
   });
 
