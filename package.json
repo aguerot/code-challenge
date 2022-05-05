@@ -29,6 +29,7 @@
     "@nestjs/swagger": "^5.2.1",
     "@nrwl/angular": "13.10.1",
     "mongoose": "^6.3.0",
+    "nestjs-console": "^7.0.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.4.0",
     "swagger-ui-express": "^4.3.0",

@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "api": "apps/api",
+    "cli": "apps/cli",
     "consent": "apps/consent",
     "consent-e2e": "apps/consent-e2e",
     "consent-management": "libs/consent-management"
