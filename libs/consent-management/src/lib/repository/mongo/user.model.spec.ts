@@ -3,7 +3,7 @@ import { MongooseModule, getModelToken } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { UserModel, UserSchema } from './user.model';
 import { rootMongooseTestModule, closeInMongodConnection } from '../../test/mongoose.utils';
-import { Consent } from '@aguerot/consent-management';
+import { Consent } from '../../domain/consent';
 
 describe('user mongoose model', () => {
   let userModel: Model<UserModel>;
