@@ -1,5 +1,5 @@
 import { CreateUser, CreateUserResponse, GetUserById, GetUsers, User } from '@aguerot/consent-management';
-import { ConsoleLogger, Logger } from '@nestjs/common';
+import { ConsoleLogger } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { Command, Console } from 'nestjs-console';
 
