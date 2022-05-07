@@ -3,7 +3,8 @@ import { UserModel, UserSchema } from './user.model';
 import { MongooseModule } from '@nestjs/mongoose';
 import { rootMongooseTestModule, closeInMongodConnection } from '../../test/mongoose.utils';
 import { UserRepositoryMongo } from './user.repository.mongo';
-import { IUserRepository, UserBuilder } from '@aguerot/consent-management';
+import { IUserRepository } from '../user.repository';
+import { UserBuilder } from '../../test/user.builder';
 
 describe('user mongo repository', () => {
   let userRepository: IUserRepository;

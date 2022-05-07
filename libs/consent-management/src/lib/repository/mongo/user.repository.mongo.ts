@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Consent, Email, IUserRepository, User } from '@aguerot/consent-management';
+import { Consent } from '../../domain/consent';
+import { Email } from '../../domain/email';
+import { IUserRepository } from '../user.repository';
+import { User } from '../../domain/user';
 import { Model } from 'mongoose';
 import { UserModel } from './user.model';
 
