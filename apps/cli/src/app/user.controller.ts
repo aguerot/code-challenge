@@ -2,11 +2,12 @@ import { CreateUser, CreateUserResponse, GetUserById, GetUsers, User } from '@ag
 import { ConsoleLogger } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { Command, Console } from 'nestjs-console';
+import { serialise } from './utils';
 
 @Console(
   {
     command: 'user',
-    description: 'A command to create a user',
+    description: 'Manage User',
   }
 )
 export class UserController {
@@ -40,7 +41,7 @@ export class UserController {
     const query = new GetUsers();
     const result = await this._queryBus.execute<GetUsers, User[]>(query);
 
-    this._logger.log(JSON.stringify(result, null, 2));
+    this._logger.log(result.map(u => serialise(u)).join('\n'));
   }
 
   @Command({
@@ -51,6 +52,6 @@ export class UserController {
     const query = new GetUserById(userId);
     const result = await this._queryBus.execute<GetUserById, User>(query);
 
-    this._logger.log(JSON.stringify(result, null, 2));
+    this._logger.log(serialise(result));
   }
 }
