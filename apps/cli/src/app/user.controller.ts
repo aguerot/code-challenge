@@ -41,7 +41,7 @@ export class UserController {
     const query = new GetUsers();
     const result = await this._queryBus.execute<GetUsers, User[]>(query);
 
-    this._logger.log(result.map(u => serialise(u)).join('\n'));
+    this._logger.log('\n'+result.map(u => serialise(u)).join('\n'));
   }
 
   @Command({
