@@ -1,6 +1,6 @@
 # CLI consent management
 
-This app expose API under a `Command Line Interface` instead of `REST` 
+This app expose API under a `Command Line Interface` instead of `REST`
 
 ## Usage
 

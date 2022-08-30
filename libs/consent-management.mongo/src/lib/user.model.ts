@@ -1,21 +1,21 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { Consent } from '../../domain/consent';
+import { Consent } from '@aguerot/consent-management';
 
 @Schema()
 export class UserModel extends Document {
   @Prop()
-  id: string;
+  override id!: string;
 
   @Prop({ unique: true })
-  email: string;
+  email!: string;
 
   @Prop({
     type: [
       { id: { type: String, required: true }, enabled: { type: Boolean, required: true }, _id: false }
     ]
   })
-  consentHistory: Consent[];
+  consentHistory: Consent[] = [];
 }
 
 

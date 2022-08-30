@@ -5,6 +5,7 @@
     "cli": "apps/cli",
     "consent": "apps/consent",
     "consent-e2e": "apps/consent-e2e",
-    "consent-management": "libs/consent-management"
+    "consent-management": "libs/consent-management",
+    "consent-management.mongo": "libs/consent-management.mongo"
   }
 }

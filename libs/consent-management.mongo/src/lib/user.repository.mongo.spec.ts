@@ -1,10 +1,9 @@
 import { Test } from '@nestjs/testing';
 import { UserModel, UserSchema } from './user.model';
 import { MongooseModule } from '@nestjs/mongoose';
-import { rootMongooseTestModule, closeInMongodConnection } from '../../test/mongoose.utils';
+import { rootMongooseTestModule, closeInMongodConnection } from './mongoose.utils';
 import { UserRepositoryMongo } from './user.repository.mongo';
-import { IUserRepository } from '../user.repository';
-import { UserBuilder } from '../../test/user.builder';
+import { IUserRepository, UserBuilder } from '@aguerot/consent-management';
 
 describe('user mongo repository', () => {
   let userRepository: IUserRepository;
@@ -41,9 +40,9 @@ describe('user mongo repository', () => {
     const newUser = await userRepository.findById('id');
 
     expect(newUser).toBeDefined();
-    expect(newUser.id).toBe('id');
-    expect(newUser.email).toBe('id@inter.net');
-    expect(newUser.consents).toHaveLength(0);
+    expect(newUser?.id).toBe('id');
+    expect(newUser?.email).toBe('id@inter.net');
+    expect(newUser?.consents).toHaveLength(0);
   });
 
   it('should find a user by email', async () => {
@@ -123,8 +122,9 @@ describe('user mongo repository', () => {
 
     const user = await userRepository.findById('id1');
 
-    expect(user.consents).toHaveLength(2);
-    expect(user.consents.every(c => c.enabled));
+    expect(user).toBeDefined();
+    expect(user?.consents).toHaveLength(2);
+    expect(user?.consents.every(c => c.enabled));
 
   });
 

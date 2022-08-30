@@ -2,6 +2,17 @@
   "root": "libs/consent-management",
   "sourceRoot": "libs/consent-management/src",
   "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/consent-management",
+        "tsConfig": "libs/consent-management/tsconfig.lib.json",
+        "packageJson": "libs/consent-management/package.json",
+        "main": "libs/consent-management/src/index.ts",
+        "assets": ["libs/consent-management/*.md"]
+      }
+    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],

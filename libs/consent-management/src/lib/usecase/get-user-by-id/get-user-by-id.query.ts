@@ -9,11 +9,11 @@ export class GetUserById {
 }
 
 @QueryHandler(GetUserById)
-export class GetUserByIdHandler implements IQueryHandler<GetUserById, User> {
+export class GetUserByIdHandler implements IQueryHandler<GetUserById, User | undefined> {
   constructor(@Inject('IUserRepository') private readonly _repo: IUserRepository) {
   }
 
-  execute({ id }: GetUserById): Promise<User> {
+  execute({ id }: GetUserById): Promise<User | undefined> {
     return this._repo.findById(id);
   }
 

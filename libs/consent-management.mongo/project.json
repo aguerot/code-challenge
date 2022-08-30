@@ -1,0 +1,33 @@
+{
+  "root": "libs/consent-management.mongo",
+  "sourceRoot": "libs/consent-management.mongo/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/consent-management.mongo",
+        "tsConfig": "libs/consent-management.mongo/tsconfig.lib.json",
+        "packageJson": "libs/consent-management.mongo/package.json",
+        "main": "libs/consent-management.mongo/src/index.ts",
+        "assets": ["libs/consent-management.mongo/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/consent-management.mongo/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/consent-management.mongo"],
+      "options": {
+        "jestConfig": "libs/consent-management.mongo/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": [ "mongo" ]
+}

@@ -2,8 +2,8 @@ import { Test } from '@nestjs/testing';
 import { MongooseModule, getModelToken } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { UserModel, UserSchema } from './user.model';
-import { rootMongooseTestModule, closeInMongodConnection } from '../../test/mongoose.utils';
-import { Consent } from '../../domain/consent';
+import { rootMongooseTestModule, closeInMongodConnection } from './mongoose.utils';
+import { Consent } from '@aguerot/consent-management';
 
 describe('user mongoose model', () => {
   let userModel: Model<UserModel>;
@@ -49,9 +49,9 @@ describe('user mongoose model', () => {
     const newuser = await userModel.findOne({ id });
 
     expect(newuser).toBeDefined();
-    expect(newuser.email).toBe(email);
-    expect(newuser.consentHistory).toHaveLength(3);
-    expect(newuser.consentHistory.every(consent =>
+    expect(newuser?.email).toBe(email);
+    expect(newuser?.consentHistory).toHaveLength(3);
+    expect(newuser?.consentHistory.every(consent =>
       consent.id !== undefined &&
       consent.enabled !== undefined)).toBeTruthy();
   });

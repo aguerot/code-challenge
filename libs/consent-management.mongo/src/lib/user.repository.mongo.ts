@@ -1,9 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Consent } from '../../domain/consent';
-import { Email } from '../../domain/email';
-import { IUserRepository } from '../user.repository';
-import { User } from '../../domain/user';
+import { User, Email, Consent, IUserRepository } from '@aguerot/consent-management';
 import { Model } from 'mongoose';
 import { UserModel } from './user.model';
 
@@ -25,11 +22,11 @@ export class UserRepositoryMongo implements IUserRepository {
     return items.map(i => new User(i.id, Email.create(i.email), i.consentHistory));
   }
 
-  findById(id: string): Promise<User> {
+  findById(id: string): Promise<User | undefined> {
     return this.findOne({ id });
   }
 
-  findByEmail(email: string): Promise<User> {
+  findByEmail(email: string): Promise<User | undefined> {
     return this.findOne({ email });
   }
 
