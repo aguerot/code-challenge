@@ -29,5 +29,5 @@
       }
     }
   },
-  "tags": [ "mongo" ]
+  "tags": [ "type:lib", "scope:repository" ]
 }
