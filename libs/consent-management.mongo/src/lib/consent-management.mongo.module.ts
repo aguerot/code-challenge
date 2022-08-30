@@ -14,5 +14,8 @@ import { UserRepositoryMongo } from './user.repository.mongo';
   providers: [
     { provide: 'IUserRepository', useClass: UserRepositoryMongo }
   ],
+  exports: [
+    'IUserRepository'
+  ]
 })
 export class ConsentManagementMongoModule {}
